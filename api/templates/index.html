@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roman Numerals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <div class="backdrop"></div>
+    <header class="top">
+      <p class="eyebrow">A two-player contest</p>
+      <h1>Roman Numerals</h1>
+      <p class="lede">
+        I may step once, II up to twice, III three, IV four, V five — in any direction.
+        Ranks I and VI stay sealed until every piece from ranks II and V stands on III and IV.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel rules">
+        <h2>How to play</h2>
+        <ol>
+          <li>Gold moves first. Click a piece, then a highlighted square.</li>
+          <li>Each numeral may travel up to that many squares, including diagonals.</li>
+          <li>You may not jump. Landing on an enemy captures it.</li>
+          <li>Back-rank pieces (rows 1 and 6) cannot move until every remaining front-line piece (the ones that started on rows 2 and 5) sits on row 3 or 4.</li>
+          <li>Win by capturing every opposing piece, reaching the far back rank, or leaving the opponent with no legal move.</li>
+        </ol>
+        <div class="legend">
+          <span><i class="swatch gold"></i> Gold — rows 1 &amp; 2</span>
+          <span><i class="swatch crimson"></i> Crimson — rows 5 &amp; 6</span>
+        </div>
+      </section>
+
+      <section class="table">
+        <div class="hud">
+          <div class="status" id="status">Gold to move</div>
+          <div class="lock" id="lock">Back ranks locked</div>
+        </div>
+        <div class="board-wrap">
+          <div class="row-labels" aria-hidden="true">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+          </div>
+          <div id="board" class="board" role="grid" aria-label="Game board"></div>
+        </div>
+        <div class="captured-row">
+          <div>
+            <h3>Gold captured</h3>
+            <div id="captured-0" class="captured"></div>
+          </div>
+          <div>
+            <h3>Crimson captured</h3>
+            <div id="captured-1" class="captured"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel controls">
+        <h2>Match</h2>
+        <label class="mode">
+          Opponent
+          <select id="mode">
+            <option value="hotseat">Pass and play</option>
+            <option value="ai">Play against the consul</option>
+          </select>
+        </label>
+        <button type="button" id="new-game">New game</button>
+        <p class="note" id="message">Select a gold piece to begin.</p>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+  </body>
+</html>
